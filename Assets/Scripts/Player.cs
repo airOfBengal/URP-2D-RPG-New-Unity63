@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
    private Player_IdleState idleState;
    private Player_MoveState moveState;
    private InputControls controls;
+   public InputControls InputControl => controls;
 
    private void Awake() 
    {
