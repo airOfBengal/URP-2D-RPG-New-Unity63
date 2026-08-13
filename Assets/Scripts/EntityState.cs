@@ -4,16 +4,18 @@ public class EntityState
 {
     protected StateMachine stateMachine;
     protected string stateName;
+    Animator anim;
 
-    public EntityState(StateMachine stateMachine, string stateName)
+    public EntityState(Animator anim, StateMachine stateMachine, string stateName)
     {
         this.stateMachine = stateMachine;
         this.stateName = stateName;
+        this.anim = anim;
     }
 
     public virtual void Enter()
     {
-        Debug.Log("I enter " + stateName);
+        anim.SetBool(this.stateName, true);
     }
 
     public virtual void Update()
@@ -23,6 +25,6 @@ public class EntityState
 
     public virtual void Exit()
     {
-        Debug.Log("I exit " + stateName);
+        anim.SetBool(this.stateName, false);
     }
 }

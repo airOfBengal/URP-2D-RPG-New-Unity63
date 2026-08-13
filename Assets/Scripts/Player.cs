@@ -7,12 +7,14 @@ public class Player : MonoBehaviour
    private Player_MoveState moveState;
    private InputControls controls;
    public InputControls InputControl => controls;
+   Animator anim;
 
    private void Awake() 
    {
+        anim = GetComponentInChildren<Animator>();
         stateMachine = new StateMachine();
-        idleState = new Player_IdleState(stateMachine, "Idle");
-        moveState = new Player_MoveState(stateMachine, "Move");
+        idleState = new Player_IdleState(anim, stateMachine, "idle");
+        moveState = new Player_MoveState(anim, stateMachine, "move");
         controls = new InputControls();
    }
 
@@ -25,11 +27,14 @@ public class Player : MonoBehaviour
             stateMachine.ChangeState(idleState);
         };
         controls.Player.Interact.canceled += context => {};
-        controls.Player.Jump.performed += context =>
+        controls.Player.Move.performed += context =>
         {
             stateMachine.ChangeState(moveState);
         };
-        controls.Player.Jump.canceled += context => {};
+        controls.Player.Move.canceled += context =>
+        {
+             stateMachine.ChangeState(idleState);
+        };
    }
 
    private void OnEnable() {
@@ -38,7 +43,7 @@ public class Player : MonoBehaviour
 
    private void Update() 
    {
-        stateMachine.currentState.Update(); 
+        stateMachine.UpdateActiveState();
    }
 
    private void OnDisable() {
