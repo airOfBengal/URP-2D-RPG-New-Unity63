@@ -4,13 +4,17 @@ public class EntityState
 {
     protected StateMachine stateMachine;
     protected string stateName;
+    protected Player player;
     Animator anim;
+    Rigidbody2D rb;
 
-    public EntityState(Animator anim, StateMachine stateMachine, string stateName)
+    public EntityState(Player player, StateMachine stateMachine, string stateName)
     {
+        this.player = player;
         this.stateMachine = stateMachine;
         this.stateName = stateName;
-        this.anim = anim;
+        this.anim = player.anim;
+        this.rb = player.rb;
     }
 
     public virtual void Enter()
@@ -20,7 +24,15 @@ public class EntityState
 
     public virtual void Update()
     {
-        Debug.Log("I run update of " + stateName);
+        float moveAmount = Mathf.Abs(player.moveInput.x) + Mathf.Abs(player.moveInput.y);
+        if(moveAmount > 0f)
+        {
+            player.stateMachine.ChangeState(player.moveState);
+        }
+        else
+        {
+            player.stateMachine.ChangeState(player.idleState);
+        }
     }
 
     public virtual void Exit()

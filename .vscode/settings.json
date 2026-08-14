@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "URP-2D-RPG-New-Unity65.slnx"
+    "dotnet.defaultSolution": "URP 2D RPG New.slnx"
 }

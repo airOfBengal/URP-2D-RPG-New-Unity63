@@ -3,18 +3,22 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
    public StateMachine stateMachine { get; private set; }
-   private Player_IdleState idleState;
-   private Player_MoveState moveState;
+   public Player_IdleState idleState { get; private set; }
+   public Player_MoveState moveState { get; private set; }
    private InputControls controls;
    public InputControls InputControl => controls;
-   Animator anim;
+   public Animator anim { get; private set; }
+   public Rigidbody2D rb { get; private set; }
+   [field: SerializeField] public float moveSpeed { get; private set; } = 8f;
+   public Vector2 moveInput { get; private set; }
 
    private void Awake() 
    {
         anim = GetComponentInChildren<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         stateMachine = new StateMachine();
-        idleState = new Player_IdleState(anim, stateMachine, "idle");
-        moveState = new Player_MoveState(anim, stateMachine, "move");
+        idleState = new Player_IdleState(this, stateMachine, "idle");
+        moveState = new Player_MoveState(this, stateMachine, "move");
         controls = new InputControls();
    }
 
@@ -24,16 +28,16 @@ public class Player : MonoBehaviour
         
         controls.Player.Interact.performed += context =>
         {
-            stateMachine.ChangeState(idleState);
+            
         };
         controls.Player.Interact.canceled += context => {};
         controls.Player.Move.performed += context =>
         {
-            stateMachine.ChangeState(moveState);
+            moveInput = context.ReadValue<Vector2>();
         };
         controls.Player.Move.canceled += context =>
         {
-             stateMachine.ChangeState(idleState);
+             moveInput = Vector2.zero;
         };
    }
 
@@ -49,4 +53,9 @@ public class Player : MonoBehaviour
    private void OnDisable() {
         controls.Disable();
    }
+
+   public void SetVelocity(float xVelocity, float yVelocity)
+     {
+          rb.linearVelocity = new Vector2(xVelocity, yVelocity);
+     }
 }
