@@ -5,12 +5,15 @@ public class Player : MonoBehaviour
    public StateMachine stateMachine { get; private set; }
    public Player_IdleState idleState { get; private set; }
    public Player_MoveState moveState { get; private set; }
-   private InputControls controls;
+   public Player_JumpState jumpState { get; private set; }
+   public Player_FallState fallState { get; private set; }
+   public InputControls controls { get; private set; }
    public InputControls InputControl => controls;
    public Animator anim { get; private set; }
    public Rigidbody2D rb { get; private set; }
    [field: SerializeField] public float moveSpeed { get; private set; } = 8f;
    public Vector2 moveInput { get; private set; }
+   [field: SerializeField] public float jumpForce {get; private set;} = 5f;
 
    private void Awake() 
    {
@@ -19,6 +22,8 @@ public class Player : MonoBehaviour
         stateMachine = new StateMachine();
         idleState = new Player_IdleState(this, stateMachine, "idle");
         moveState = new Player_MoveState(this, stateMachine, "move");
+        jumpState = new Player_JumpState(this, stateMachine, "jumpFall");
+        fallState = new Player_FallState(this, stateMachine, "jumpFall");
         controls = new InputControls();
    }
 
@@ -26,11 +31,6 @@ public class Player : MonoBehaviour
    {
         stateMachine.Initialize(idleState);
         
-        controls.Player.Interact.performed += context =>
-        {
-            
-        };
-        controls.Player.Interact.canceled += context => {};
         controls.Player.Move.performed += context =>
         {
             moveInput = context.ReadValue<Vector2>();
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
 
    private void Update() 
    {
-        stateMachine.UpdateActiveState();
+     stateMachine.UpdateActiveState();
    }
 
    private void OnDisable() {
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
    }
 
    public void SetVelocity(float xVelocity, float yVelocity)
-     {
-          rb.linearVelocity = new Vector2(xVelocity, yVelocity);
-     }
+   {
+       rb.linearVelocity = new Vector2(xVelocity, yVelocity);
+   }
 }

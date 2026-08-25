@@ -289,7 +289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9e92b4d3b7e6f42a8fd39540d1c058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  <moveSpeed>k__BackingField: 1000
+  <moveSpeed>k__BackingField: 8
+  <jumpForce>k__BackingField: 10
 --- !u!4 &468139938
 Transform:
   m_ObjectHideFlags: 0
@@ -358,7 +359,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
