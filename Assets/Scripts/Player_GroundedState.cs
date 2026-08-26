@@ -8,7 +8,7 @@ public class Player_GroundedState : EntityState
 
     public override void Update()
     {
-        base.Update();
+        base.Update();        
 
         if(player.controls.Player.Jump.WasPerformedThisFrame())
         {

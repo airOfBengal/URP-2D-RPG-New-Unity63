@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
      public Player_MoveState moveState { get; private set; }
      public Player_JumpState jumpState { get; private set; }
      public Player_FallState fallState { get; private set; }
+     public Player_WallSlideState wallSlideState {get; private set;}
      public InputControls controls { get; private set; }
      public InputControls InputControl => controls;
      public Animator anim { get; private set; }
@@ -18,11 +19,16 @@ public class Player : MonoBehaviour
      [field: SerializeField] public float jumpForce { get; private set; } = 5f;
      [Range(0f,1f)]
      [field: SerializeField] public float inAirMoveSpeed { get; private set; } = 0.7f;
+     [Range(0f,1f)]
+     [field: SerializeField] public float wallSlideSpeed { get; private set; } = 0.4f;
 
      [Header("Collision Detection")]
      [SerializeField] float groundCheckDistance;
+     [SerializeField] float wallCheckDistance;
      [SerializeField] LayerMask groundLayerMask;
      [field: SerializeField] public bool groundDetected {get; private set;}
+     [field: SerializeField] public bool wallDetected {get; private set;}
+     
 
      private void Awake()
      {
@@ -33,6 +39,7 @@ public class Player : MonoBehaviour
           moveState = new Player_MoveState(this, stateMachine, "move");
           jumpState = new Player_JumpState(this, stateMachine, "jumpFall");
           fallState = new Player_FallState(this, stateMachine, "jumpFall");
+          wallSlideState = new Player_WallSlideState(this, stateMachine, "wallSlide");
           controls = new InputControls();
      }
 
@@ -74,10 +81,12 @@ public class Player : MonoBehaviour
      void HandleCollisionDetection()
      {
           groundDetected = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayerMask);
+          wallDetected = Physics2D.Raycast(transform.position, transform.right, wallCheckDistance, groundLayerMask);
      }
 
      private void OnDrawGizmos()
      {
           Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCheckDistance);
+          Gizmos.DrawLine(transform.position, transform.position + transform.right * wallCheckDistance);
      }
 }
