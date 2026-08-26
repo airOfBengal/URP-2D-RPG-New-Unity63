@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player_FallState : EntityState
+public class Player_FallState : Player_AiredState
 {
     public Player_FallState(Player player, StateMachine stateMachine, string stateName) : base(player, stateMachine, stateName)
     {
@@ -8,9 +8,18 @@ public class Player_FallState : EntityState
 
     public override void Enter()
     {
-        // base.Enter();
-
         anim.SetBool(stateName, false);
-        stateMachine.ChangeState(player.idleState);
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        anim.SetFloat("yVelocity", rb.linearVelocity.y);
+
+        if(player.groundDetected)
+        {
+            player.stateMachine.ChangeState(player.idleState);
+        }
     }
 }

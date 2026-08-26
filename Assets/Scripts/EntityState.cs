@@ -24,7 +24,15 @@ public class EntityState
 
     public virtual void Update()
     {
-        
+        // adjust left-right facing
+        if(player.moveInput.x < 0)
+        {
+            player.gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+        else if(player.moveInput.x > 0)
+        {
+            player.gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
+        }
     }
 
     public virtual void Exit()
