@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
      public Player_MoveState moveState { get; private set; }
      public Player_JumpState jumpState { get; private set; }
      public Player_FallState fallState { get; private set; }
-     public Player_WallSlideState wallSlideState {get; private set;}
+     public Player_WallSlideState wallSlideState { get; private set; }
+     public Player_WallJumpState wallJumpState { get; private set; }
      public InputControls controls { get; private set; }
      public InputControls InputControl => controls;
      public Animator anim { get; private set; }
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
      [field: SerializeField] public float inAirMoveSpeed { get; private set; } = 0.7f;
      [Range(0f,1f)]
      [field: SerializeField] public float wallSlideSpeed { get; private set; } = 0.4f;
+     [field: SerializeField] public Vector2 wallJumpVelocity = new Vector2(6f, 12f);
 
      [Header("Collision Detection")]
      [SerializeField] float groundCheckDistance;
@@ -40,6 +42,7 @@ public class Player : MonoBehaviour
           jumpState = new Player_JumpState(this, stateMachine, "jumpFall");
           fallState = new Player_FallState(this, stateMachine, "jumpFall");
           wallSlideState = new Player_WallSlideState(this, stateMachine, "wallSlide");
+          wallJumpState = new Player_WallJumpState(this, stateMachine, "jumpFall");
           controls = new InputControls();
      }
 
@@ -76,6 +79,11 @@ public class Player : MonoBehaviour
      public void SetVelocity(float xVelocity, float yVelocity)
      {
           rb.linearVelocity = new Vector2(xVelocity, yVelocity);
+     }
+
+     public void JumpWall()
+     {
+          SetVelocity(wallJumpVelocity.x * -transform.right.x, wallJumpVelocity.y);
      }
 
      void HandleCollisionDetection()
