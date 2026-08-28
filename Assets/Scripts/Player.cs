@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
      public Player_FallState fallState { get; private set; }
      public Player_WallSlideState wallSlideState { get; private set; }
      public Player_WallJumpState wallJumpState { get; private set; }
+     public Player_DashState dashState { get; private set; }
      public InputControls controls { get; private set; }
      public InputControls InputControl => controls;
      public Animator anim { get; private set; }
@@ -23,6 +24,9 @@ public class Player : MonoBehaviour
      [Range(0f,1f)]
      [field: SerializeField] public float wallSlideSpeed { get; private set; } = 0.4f;
      [field: SerializeField] public Vector2 wallJumpVelocity = new Vector2(6f, 12f);
+     [Space]
+     [field: SerializeField] public float dashDuration = 0.25f;
+     [field: SerializeField] public float dashSpeed = 20f;
 
      [Header("Collision Detection")]
      [SerializeField] float groundCheckDistance;
@@ -43,6 +47,7 @@ public class Player : MonoBehaviour
           fallState = new Player_FallState(this, stateMachine, "jumpFall");
           wallSlideState = new Player_WallSlideState(this, stateMachine, "wallSlide");
           wallJumpState = new Player_WallJumpState(this, stateMachine, "jumpFall");
+          dashState = new Player_DashState(this, stateMachine, "dashMove");
           controls = new InputControls();
      }
 

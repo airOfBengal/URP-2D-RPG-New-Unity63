@@ -7,6 +7,7 @@ public class EntityState
     protected Player player;
     protected Animator anim;
     protected Rigidbody2D rb;
+    protected float stateTimer;
 
     public EntityState(Player player, StateMachine stateMachine, string stateName)
     {
@@ -19,12 +20,13 @@ public class EntityState
 
     public virtual void Enter()
     {
-        anim.SetBool(this.stateName, true);
+        anim.SetBool(stateName, true);
     }
 
     public virtual void Update()
     {
         Flip();
+        stateTimer -= Time.deltaTime;        
     }
 
     protected void Flip()
@@ -42,6 +44,6 @@ public class EntityState
 
     public virtual void Exit()
     {
-        anim.SetBool(this.stateName, false);
+        anim.SetBool(stateName, false);
     }
 }

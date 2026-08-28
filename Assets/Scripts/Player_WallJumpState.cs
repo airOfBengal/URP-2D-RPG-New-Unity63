@@ -19,7 +19,7 @@ public class Player_WallJumpState : EntityState
 
         if(rb.linearVelocity.y < 0)
         {
-            player.stateMachine.ChangeState(player.fallState);
+            stateMachine.ChangeState(player.fallState);
         }
     }
 }
