@@ -10,12 +10,6 @@ public class Player_GroundedState : EntityState
     {
         base.Update();        
 
-        if(player.controls.Player.Dash.WasPressedThisFrame())
-        {
-            stateMachine.ChangeState(player.dashState);
-            return;
-        }
-
         if(player.controls.Player.Jump.WasPerformedThisFrame())
         {
             stateMachine.ChangeState(player.jumpState);
@@ -27,7 +21,7 @@ public class Player_GroundedState : EntityState
         {
             player.stateMachine.ChangeState(player.moveState);
         }
-        else
+        else if(this is Player_MoveState)
         {
             player.stateMachine.ChangeState(player.idleState);
         }

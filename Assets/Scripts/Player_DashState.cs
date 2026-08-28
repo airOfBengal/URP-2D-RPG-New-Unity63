@@ -42,5 +42,4 @@ public class Player_DashState : EntityState
         player.SetVelocity(0, 0);
         rb.gravityScale = originalGravityScale;
     }
-
 }

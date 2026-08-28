@@ -10,10 +10,13 @@ public class Player : MonoBehaviour
      public Player_WallSlideState wallSlideState { get; private set; }
      public Player_WallJumpState wallJumpState { get; private set; }
      public Player_DashState dashState { get; private set; }
+     public Player_BasicAttackState basicAttackState { get; private set; }
+
      public InputControls controls { get; private set; }
      public InputControls InputControl => controls;
      public Animator anim { get; private set; }
      public Rigidbody2D rb { get; private set; }
+     public volatile bool isInBasicAttack;
 
      [Header("Movement Details")]
      [field: SerializeField] public float moveSpeed { get; private set; } = 8f;
@@ -48,6 +51,8 @@ public class Player : MonoBehaviour
           wallSlideState = new Player_WallSlideState(this, stateMachine, "wallSlide");
           wallJumpState = new Player_WallJumpState(this, stateMachine, "jumpFall");
           dashState = new Player_DashState(this, stateMachine, "dashMove");
+          basicAttackState = new Player_BasicAttackState(this, stateMachine, "basicAttack");
+
           controls = new InputControls();
      }
 

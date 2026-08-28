@@ -27,6 +27,17 @@ public class EntityState
     {
         Flip();
         stateTimer -= Time.deltaTime;        
+
+        if(player.controls.Player.Attack.WasPressedThisFrame() && !player.isInBasicAttack)
+        {
+            player.isInBasicAttack = true;
+            stateMachine.ChangeState(player.basicAttackState);
+        }
+
+        if(player.controls.Player.Dash.WasPressedThisFrame())
+        {
+            stateMachine.ChangeState(player.dashState);            
+        }
     }
 
     protected void Flip()
