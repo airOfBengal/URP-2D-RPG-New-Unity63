@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
      public Player_WallJumpState wallJumpState { get; private set; }
      public Player_DashState dashState { get; private set; }
      public Player_BasicAttackState basicAttackState { get; private set; }
+     public Player_JumpAttackState jumpAttackState { get; private set; }
 
      public InputControls controls { get; private set; }
      public InputControls InputControl => controls;
@@ -55,6 +56,7 @@ public class Player : MonoBehaviour
           wallJumpState = new Player_WallJumpState(this, stateMachine, "jumpFall");
           dashState = new Player_DashState(this, stateMachine, "dashMove");
           basicAttackState = new Player_BasicAttackState(this, stateMachine, "basicAttack");
+          jumpAttackState = new Player_JumpAttackState(this, stateMachine, "jumpAttack");
 
           controls = new InputControls();
      }
