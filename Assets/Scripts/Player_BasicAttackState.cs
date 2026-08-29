@@ -6,6 +6,7 @@ public class Player_BasicAttackState : EntityState
     const int FIRST_COMBO_INDEX = 1;
     const int COMBO_LIMIT = 3;
     int comboIndex = 1;
+    float lastTimeAttacked;
     
     public Player_BasicAttackState(Player player, StateMachine stateMachine, string stateName) : base(player, stateMachine, stateName)
     {
@@ -22,7 +23,7 @@ public class Player_BasicAttackState : EntityState
 
     private void ResetComboIndexIfNeeded()
     {
-        if(comboIndex > COMBO_LIMIT)
+        if(comboIndex > COMBO_LIMIT || Time.time > lastTimeAttacked + player.comboAttackResetTime)
         {
             comboIndex = FIRST_COMBO_INDEX;
         }
@@ -43,5 +44,6 @@ public class Player_BasicAttackState : EntityState
         base.Exit();
         player.isInBasicAttack = false;
         comboIndex++;
+        lastTimeAttacked = Time.time;
     }
 }

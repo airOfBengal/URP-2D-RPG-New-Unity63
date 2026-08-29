@@ -37,6 +37,9 @@ public class Player : MonoBehaviour
      [SerializeField] LayerMask groundLayerMask;
      [field: SerializeField] public bool groundDetected {get; private set;}
      [field: SerializeField] public bool wallDetected {get; private set;}
+
+     [Header("Attack Details")]
+     [field: SerializeField] public float comboAttackResetTime { get; private set; } = 1f;
      
 
      private void Awake()
