@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -99,9 +100,15 @@ public class Player : MonoBehaviour
      public void JumpWall()
      {
           SetVelocity(wallJumpVelocity.x * -transform.right.x, wallJumpVelocity.y);
+          Flip();
      }
 
-     void HandleCollisionDetection()
+    private void Flip()
+    {
+        transform.rotation = transform.rotation.y == 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(Vector2.zero);
+    }
+
+    void HandleCollisionDetection()
      {
           groundDetected = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayerMask);
           wallDetected = Physics2D.Raycast(transform.position, transform.right, wallCheckDistance, groundLayerMask);

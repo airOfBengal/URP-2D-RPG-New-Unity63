@@ -42,13 +42,12 @@ public class EntityState
 
     protected void Flip()
     {
-        // Debug.Log(rb.linearVelocity);
         // adjust left-right facing
-        if (rb.linearVelocity.x < 0)
+        if (player.moveInput.x < 0)
         {
             player.gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
-        else if (rb.linearVelocity.x > 0)
+        else if (player.moveInput.x > 0)
         {
             player.gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
         }
