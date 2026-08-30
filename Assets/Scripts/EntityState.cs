@@ -42,6 +42,7 @@ public class EntityState
 
     protected void Flip()
     {
+        // Debug.Log(rb.linearVelocity);
         // adjust left-right facing
         if (rb.linearVelocity.x < 0)
         {

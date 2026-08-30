@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 200111187
+    locked: 0
+  - name: Platform
+    uniqueID: 2985313715
+    locked: 0
+  - name: Player
+    uniqueID: 2564861973
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
