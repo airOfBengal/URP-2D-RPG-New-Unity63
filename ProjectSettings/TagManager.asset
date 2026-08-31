@@ -44,6 +44,9 @@ TagManager:
   - name: Platform
     uniqueID: 2985313715
     locked: 0
+  - name: Enemy
+    uniqueID: 1765837845
+    locked: 0
   - name: Player
     uniqueID: 2564861973
     locked: 0
