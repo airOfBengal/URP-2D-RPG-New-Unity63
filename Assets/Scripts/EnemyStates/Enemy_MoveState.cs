@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Enemy_MoveState : EnemyState
 {
@@ -25,6 +26,11 @@ public class Enemy_MoveState : EnemyState
         if(enemy.wallDetected || !enemy.groundDetected)
         {
             stateMachine.ChangeState(enemy.idleState);            
+        }
+
+        if(Keyboard.current.fKey.wasPressedThisFrame)
+        {
+            stateMachine.ChangeState(enemy.attackState);
         }
     }
 }
