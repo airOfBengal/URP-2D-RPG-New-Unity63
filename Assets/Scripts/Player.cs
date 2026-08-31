@@ -72,12 +72,6 @@ public class Player : Entity
           controls.Enable();
      }
 
-     private void Update()
-     {
-          HandleCollisionDetection();
-          stateMachine.UpdateActiveState();
-     }
-
      private void OnDisable()
      {
           controls.Disable();

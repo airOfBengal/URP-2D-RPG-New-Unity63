@@ -1,0 +1,30 @@
+using UnityEngine;
+
+public class Enemy_MoveState : EnemyState
+{
+    public Enemy_MoveState(Enemy enemy, StateMachine stateMachine, string stateName) : base(enemy, stateMachine, stateName)
+    {
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        if(enemy.wallDetected || !enemy.groundDetected)
+        {
+            enemy.Flip();
+        }
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        enemy.SetVelocity(enemy.moveSpeed * enemy.transform.right.x , rb.linearVelocity.y);
+
+        if(enemy.wallDetected || !enemy.groundDetected)
+        {
+            stateMachine.ChangeState(enemy.idleState);            
+        }
+    }
+}

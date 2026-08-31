@@ -7,6 +7,7 @@ public class Entity : MonoBehaviour
     public StateMachine stateMachine { get; private set; }
 
     [Header("Collision Detection")]
+    [SerializeField] protected Transform groundCheck;
     [SerializeField] protected float groundCheckDistance;
     [SerializeField] protected float wallCheckDistance;
     [SerializeField] protected LayerMask groundLayerMask;
@@ -25,25 +26,32 @@ public class Entity : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        HandleCollisionDetection();
+        stateMachine.UpdateActiveState();
+    }
+
     public void SetVelocity(float xVelocity, float yVelocity)
     {
         rb.linearVelocity = new Vector2(xVelocity, yVelocity);
     }
 
-    protected void Flip()
+    public void Flip()
     {
-        transform.rotation = transform.rotation.y == 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(Vector2.zero);
+        // transform.rotation = transform.rotation.y == 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(Vector2.zero);
+        transform.Rotate(new Vector3(0, 180, 0));
     }
 
     protected void HandleCollisionDetection()
     {
-        groundDetected = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayerMask);
+        groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayerMask);
         wallDetected = Physics2D.Raycast(transform.position, transform.right, wallCheckDistance, groundLayerMask);
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCheckDistance);
+        Gizmos.DrawLine(groundCheck.position, groundCheck.position + Vector3.down * groundCheckDistance);
         Gizmos.DrawLine(transform.position, transform.position + transform.right * wallCheckDistance);
     }
 }
