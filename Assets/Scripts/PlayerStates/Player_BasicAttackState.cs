@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Player_BasicAttackState : EntityState
+public class Player_BasicAttackState : PlayerState
 {
     const int FIRST_COMBO_INDEX = 1;
     const int COMBO_LIMIT = 3;

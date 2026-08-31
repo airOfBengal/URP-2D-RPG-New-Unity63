@@ -1,7 +1,7 @@
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
-public class Player_DashState : EntityState
+public class Player_DashState : PlayerState
 {
     float originalGravityScale;
 
