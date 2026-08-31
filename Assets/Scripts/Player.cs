@@ -1,9 +1,8 @@
 using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
-     public StateMachine stateMachine { get; private set; }
      public Player_IdleState idleState { get; private set; }
      public Player_MoveState moveState { get; private set; }
      public Player_JumpState jumpState { get; private set; }
@@ -16,8 +15,7 @@ public class Player : MonoBehaviour
 
      public InputControls controls { get; private set; }
      public InputControls InputControl => controls;
-     public Animator anim { get; private set; }
-     public Rigidbody2D rb { get; private set; }
+     
      public volatile bool isInBasicAttack;
 
      [Header("Movement Details")]
@@ -33,22 +31,15 @@ public class Player : MonoBehaviour
      [field: SerializeField] public float dashDuration = 0.25f;
      [field: SerializeField] public float dashSpeed = 20f;
 
-     [Header("Collision Detection")]
-     [SerializeField] float groundCheckDistance;
-     [SerializeField] float wallCheckDistance;
-     [SerializeField] LayerMask groundLayerMask;
-     [field: SerializeField] public bool groundDetected {get; private set;}
-     [field: SerializeField] public bool wallDetected {get; private set;}
+     
 
      [Header("Attack Details")]
      [field: SerializeField] public float comboAttackResetTime { get; private set; } = 1f;
      
 
-     private void Awake()
+     protected override void Awake()
      {
-          anim = GetComponentInChildren<Animator>();
-          rb = GetComponent<Rigidbody2D>();
-          stateMachine = new StateMachine();
+          base.Awake();
           idleState = new Player_IdleState(this, stateMachine, "idle");
           moveState = new Player_MoveState(this, stateMachine, "move");
           jumpState = new Player_JumpState(this, stateMachine, "jumpFall");
@@ -62,7 +53,7 @@ public class Player : MonoBehaviour
           controls = new InputControls();
      }
 
-     private void Start()
+     protected override void Start()
      {
           stateMachine.Initialize(idleState);
 
@@ -92,31 +83,11 @@ public class Player : MonoBehaviour
           controls.Disable();
      }
 
-     public void SetVelocity(float xVelocity, float yVelocity)
-     {
-          rb.linearVelocity = new Vector2(xVelocity, yVelocity);
-     }
-
      public void JumpWall()
      {
           SetVelocity(wallJumpVelocity.x * -transform.right.x, wallJumpVelocity.y);
           Flip();
      }
 
-    private void Flip()
-    {
-        transform.rotation = transform.rotation.y == 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(Vector2.zero);
-    }
 
-    void HandleCollisionDetection()
-     {
-          groundDetected = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayerMask);
-          wallDetected = Physics2D.Raycast(transform.position, transform.right, wallCheckDistance, groundLayerMask);
-     }
-
-     private void OnDrawGizmos()
-     {
-          Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCheckDistance);
-          Gizmos.DrawLine(transform.position, transform.position + transform.right * wallCheckDistance);
-     }
 }

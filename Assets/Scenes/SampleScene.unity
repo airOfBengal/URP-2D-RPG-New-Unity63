@@ -5874,6 +5874,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9e92b4d3b7e6f42a8fd39540d1c058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  groundCheckDistance: 1.4
+  wallCheckDistance: 0.6
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  <groundDetected>k__BackingField: 0
+  <wallDetected>k__BackingField: 0
   isInBasicAttack: 0
   <moveSpeed>k__BackingField: 8
   <jumpForce>k__BackingField: 12
@@ -5882,13 +5889,6 @@ MonoBehaviour:
   wallJumpVelocity: {x: 6, y: 12}
   dashDuration: 0.25
   dashSpeed: 20
-  groundCheckDistance: 1.4
-  wallCheckDistance: 0.6
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  <groundDetected>k__BackingField: 0
-  <wallDetected>k__BackingField: 0
   <comboAttackResetTime>k__BackingField: 1
 --- !u!4 &468139938
 Transform:
