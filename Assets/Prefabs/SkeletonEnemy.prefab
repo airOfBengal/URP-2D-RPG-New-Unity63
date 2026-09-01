@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8961612282829382684}
   - component: {fileID: 4515077159843080118}
   - component: {fileID: 5289536013393435535}
+  - component: {fileID: 8706257747653276056}
   m_Layer: 8
   m_Name: SkeletonEnemy
   m_TagString: Untagged
@@ -35,6 +36,7 @@ Transform:
   - {fileID: 8984318685141104071}
   - {fileID: 3815330966138390605}
   - {fileID: 1379382558843046911}
+  - {fileID: 3745489129943067416}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8961612282829382684
@@ -131,6 +133,23 @@ CapsuleCollider2D:
   m_Offset: {x: 0.016705073, y: -0.25725925}
   m_Size: {x: 0.62695944, y: 1.5145185}
   m_Direction: 0
+--- !u!114 &8706257747653276056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265022067569747417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44841b2607a98b240879713f1394327b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityCombat
+  targetCheck: {fileID: 3745489129943067416}
+  targetCheckRadius: 1
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &691304924805582164
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,6 +212,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7211623660123916410}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3299862895208910608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3745489129943067416}
+  m_Layer: 8
+  m_Name: TargetCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3745489129943067416
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299862895208910608}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.33, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7211623660123916410}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6347225123655353277
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +254,7 @@ GameObject:
   - component: {fileID: 8984318685141104071}
   - component: {fileID: 3900886254932075123}
   - component: {fileID: 538297554857632931}
+  - component: {fileID: 7615268221011741789}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -308,3 +359,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &7615268221011741789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6347225123655353277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3cdf7eb6453404c84cf643bbeb0a42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityAnimationTriggers
