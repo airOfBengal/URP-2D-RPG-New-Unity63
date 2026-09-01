@@ -29,6 +29,10 @@ public class Enemy_BattleState : EnemyState
         }
         else
         {
+            if(!enemy.PlayerDetected())
+            {
+                stateMachine.ChangeState(enemy.idleState);                
+            }
             enemy.SetVelocity(enemy.battleMoveSpeed * enemy.transform.right.x, rb.linearVelocityY);
         }
 

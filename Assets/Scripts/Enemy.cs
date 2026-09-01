@@ -10,6 +10,7 @@ public class Enemy : Entity
     [Header("Battle Details")]
     public float battleMoveSpeed = 1f;
     public float attackDistance = 2f;
+    public float attackCheckDistance = 0.1f;
 
     [Header("Movement Details")]
     public float idleTime = 2f;
@@ -36,9 +37,9 @@ public class Enemy : Entity
         base.OnDrawGizmos();
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + (transform.right.x * playerCheckDistance), playerCheck.position.y));
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + (transform.right.x * playerCheckDistance), playerCheck.position.y));
 
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + (transform.right.x * attackDistance), playerCheck.position.y));
+        Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + (transform.right.x * attackCheckDistance), playerCheck.position.y));
     }
 }
