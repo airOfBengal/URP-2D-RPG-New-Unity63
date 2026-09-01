@@ -27,5 +27,6 @@ public class EntityHealth : MonoBehaviour
     {
         isDead = true;
         Debug.Log("Entity died!");
+        Destroy(gameObject);
     }
 }

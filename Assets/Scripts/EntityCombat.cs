@@ -12,12 +12,16 @@ public class EntityCombat : MonoBehaviour
 
     public void PerformAttack()
     {
-        GetDetectedColliders();
-
         foreach(var target in GetDetectedColliders())
         {
             EntityHealth health = target.GetComponent<EntityHealth>();
             health.TakeDamage(damage);
+
+            // if player attacks behind side, enemy flips.
+            if(transform.right == target.transform.right)
+            {
+                target.transform.Rotate(new Vector3(0, 180, 0));
+            }
         }
     }
 
