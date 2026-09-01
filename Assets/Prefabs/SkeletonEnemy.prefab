@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5289536013393435535}
   - component: {fileID: 8706257747653276056}
   - component: {fileID: 6372339993861155479}
+  - component: {fileID: 3806820955629320000}
   m_Layer: 8
   m_Name: SkeletonEnemy
   m_TagString: Untagged
@@ -166,6 +167,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealth
   maxHp: 100
   isDead: 0
+--- !u!114 &3806820955629320000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265022067569747417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fc73bc61471f34a9b251fc91f39b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityVfx
+  damageMaterial: {fileID: 2100000, guid: c5f5e3c78125fa24b928e9600bba0277, type: 2}
+  damageVfxDuration: 0.2
 --- !u!1 &691304924805582164
 GameObject:
   m_ObjectHideFlags: 0

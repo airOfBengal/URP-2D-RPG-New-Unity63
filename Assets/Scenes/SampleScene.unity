@@ -5909,6 +5909,7 @@ GameObject:
   - component: {fileID: 468139939}
   - component: {fileID: 468139941}
   - component: {fileID: 468139942}
+  - component: {fileID: 468139943}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -6058,6 +6059,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealth
   maxHp: 100
   isDead: 0
+--- !u!114 &468139943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468139936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fc73bc61471f34a9b251fc91f39b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityVfx
+  damageMaterial: {fileID: 2100000, guid: c5f5e3c78125fa24b928e9600bba0277, type: 2}
+  damageVfxDuration: 0.2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,12 +5,18 @@ public class EntityHealth : MonoBehaviour
 {
     [SerializeField] protected float maxHp = 100f;
     [SerializeField] protected bool isDead;
+    EntityVfx entityVfx;
 
+    private void Awake() 
+    {
+        entityVfx = GetComponent<EntityVfx>();    
+    }
 
     public virtual void TakeDamage(float damage)
     {
         if(isDead) return;
 
+        entityVfx?.ShowHitVfx();
         ReduceHp(damage);
     }
 
@@ -26,7 +32,6 @@ public class EntityHealth : MonoBehaviour
     private void Die()
     {
         isDead = true;
-        Debug.Log("Entity died!");
         Destroy(gameObject);
     }
 }
