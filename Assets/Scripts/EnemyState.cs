@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyState : EntityState
 {
     protected Enemy enemy;
+    protected float moveSpeedMultiplier = 1f;
 
     public EnemyState(Enemy enemy, StateMachine stateMachine, string stateName) : base(stateMachine, stateName)
     {
@@ -16,5 +17,6 @@ public class EnemyState : EntityState
         base.Update();
 
         anim.SetFloat("xVelocity", rb.linearVelocityX);
+        anim.SetFloat("moveSpeedMultiplier", moveSpeedMultiplier);
     }
 }

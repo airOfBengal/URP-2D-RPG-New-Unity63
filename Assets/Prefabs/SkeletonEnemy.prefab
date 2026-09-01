@@ -57,8 +57,9 @@ MonoBehaviour:
     m_Bits: 64
   <groundDetected>k__BackingField: 0
   <wallDetected>k__BackingField: 0
-  battleMoveSpeed: 1
+  battleMoveSpeed: 2
   attackDistance: 2
+  attackCheckDistance: 0.1
   idleTime: 2
   moveSpeed: 1.4
   playerLayerMask:

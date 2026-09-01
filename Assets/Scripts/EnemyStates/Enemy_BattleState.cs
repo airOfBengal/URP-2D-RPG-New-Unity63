@@ -17,6 +17,8 @@ public class Enemy_BattleState : EnemyState
         {
             player = enemy.PlayerDetected().transform;
         }
+
+        moveSpeedMultiplier = 2f;
     }
 
     public override void Update()

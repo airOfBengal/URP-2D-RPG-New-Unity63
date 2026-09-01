@@ -6,6 +6,13 @@ public class Enemy_GroundedState : EnemyState
     {
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+
+        moveSpeedMultiplier = 1f;
+    }
+
     public override void Update()
     {
         base.Update();
