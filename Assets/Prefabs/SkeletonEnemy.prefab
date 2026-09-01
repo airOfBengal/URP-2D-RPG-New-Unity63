@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8961612282829382684}
   - component: {fileID: 4515077159843080118}
   - component: {fileID: 5289536013393435535}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SkeletonEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,6 +58,11 @@ MonoBehaviour:
   <wallDetected>k__BackingField: 0
   idleTime: 2
   moveSpeed: 1.4
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  playerCheck: {fileID: 7211623660123916410}
+  playerCheckDistance: 3
 --- !u!50 &4515077159843080118
 Rigidbody2D:
   serializedVersion: 5
