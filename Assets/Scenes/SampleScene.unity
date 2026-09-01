@@ -5908,6 +5908,7 @@ GameObject:
   - component: {fileID: 468139940}
   - component: {fileID: 468139939}
   - component: {fileID: 468139941}
+  - component: {fileID: 468139942}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -6037,11 +6038,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44841b2607a98b240879713f1394327b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityCombat
+  damage: 20
   targetCheck: {fileID: 1381432111}
   targetCheckRadius: 1
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &468139942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468139936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11edb8be35308b7479807eb8df4496ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityHealth
+  maxHp: 100
+  isDead: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
