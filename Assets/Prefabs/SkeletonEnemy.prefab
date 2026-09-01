@@ -56,13 +56,15 @@ MonoBehaviour:
     m_Bits: 64
   <groundDetected>k__BackingField: 0
   <wallDetected>k__BackingField: 0
+  battleMoveSpeed: 1
+  attackDistance: 2
   idleTime: 2
   moveSpeed: 1.4
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 128
   playerCheck: {fileID: 7211623660123916410}
-  playerCheckDistance: 3
+  playerCheckDistance: 4
 --- !u!50 &4515077159843080118
 Rigidbody2D:
   serializedVersion: 5

@@ -7,11 +7,15 @@ public class Enemy : Entity
     public EnemyState attackState { get; protected set; }
     public EnemyState battleState { get; protected set; }
 
+    [Header("Battle Details")]
+    public float battleMoveSpeed = 1f;
+    public float attackDistance = 2f;
+
     [Header("Movement Details")]
     public float idleTime = 2f;
     public float moveSpeed = 1.4f;
 
-    [Header("Player detection")]
+    [Header("Player Detection")]
     [SerializeField] LayerMask playerLayerMask;
     [SerializeField] Transform playerCheck;
     [SerializeField] float playerCheckDistance = 3f;
@@ -32,7 +36,9 @@ public class Enemy : Entity
         base.OnDrawGizmos();
 
         Gizmos.color = Color.yellow;
-
         Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + (transform.right.x * playerCheckDistance), playerCheck.position.y));
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + (transform.right.x * attackDistance), playerCheck.position.y));
     }
 }
