@@ -6076,6 +6076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2fc73bc61471f34a9b251fc91f39b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityVfx
+  hitVfx: {fileID: 3347937085311167731, guid: 800543b14b3b6534194e1935ac615471, type: 3}
   damageMaterial: {fileID: 2100000, guid: c5f5e3c78125fa24b928e9600bba0277, type: 2}
   damageVfxDuration: 0.2
 --- !u!1 &519420028

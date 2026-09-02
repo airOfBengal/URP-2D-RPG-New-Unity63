@@ -1,10 +1,11 @@
-using System;
+
 using System.Collections;
 using UnityEngine;
 
 public class EntityVfx : MonoBehaviour
 {
     [Header("On Damage Vfx")]
+    [SerializeField] GameObject hitVfx;
     [SerializeField] Material damageMaterial;
     [SerializeField] float damageVfxDuration = 0.2f;
     protected Material originalMaterial;
@@ -21,6 +22,12 @@ public class EntityVfx : MonoBehaviour
     {
         if(damageVfxCoroutine != null) StopCoroutine(damageVfxCoroutine);
         damageVfxCoroutine = StartCoroutine(RoutineHitVfx());
+
+        if(hitVfx != null)
+        {
+            GameObject vfx = Instantiate(hitVfx, transform.position, Quaternion.identity);
+            vfx.transform.parent = transform;
+        }
     }
 
     private IEnumerator RoutineHitVfx()
