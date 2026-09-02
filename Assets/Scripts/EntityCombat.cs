@@ -14,11 +14,11 @@ public class EntityCombat : MonoBehaviour
     {
         foreach(var target in GetDetectedColliders())
         {
-            EntityHealth health = target.GetComponent<EntityHealth>();
-            health.TakeDamage(damage, transform);
+            IDamagable damagable = target.GetComponent<IDamagable>();
+            damagable?.TakeDamage(damage, transform);
 
             // if player attacks behind side, enemy flips.
-            if(transform.right == target.transform.right)
+            if(damagable is EntityHealth && transform.right == target.transform.right)
             {
                 target.transform.Rotate(new Vector3(0, 180, 0));
             }

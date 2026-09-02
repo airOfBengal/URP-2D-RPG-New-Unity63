@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EntityHealth : MonoBehaviour
+public class EntityHealth : MonoBehaviour, IDamagable
 {
     [SerializeField] protected float maxHp = 100f;
     [SerializeField] protected bool isDead;
