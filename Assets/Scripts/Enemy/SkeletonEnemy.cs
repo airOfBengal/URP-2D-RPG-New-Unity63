@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class SkeletonEnemy : Enemy
+public class SkeletonEnemy : Enemy, ICounterable
 {
     protected override void Awake()
     {
@@ -11,6 +12,7 @@ public class SkeletonEnemy : Enemy
         attackState = new Enemy_AttackState(this, stateMachine, "attack");
         battleState = new Enemy_BattleState(this, stateMachine, "battle");
         deadState = new Enemy_DeadState(this, stateMachine, "");
+        stunnedState = new Enemy_StunnedState(this, stateMachine, "stunned");
     }
 
     protected override void Start()
@@ -18,5 +20,20 @@ public class SkeletonEnemy : Enemy
         base.Start();
 
         stateMachine.Initialize(idleState);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if(Keyboard.current.fKey.wasPressedThisFrame)
+        {
+            HandleCounter();
+        }
+    }
+
+    public void HandleCounter()
+    {
+        stateMachine.ChangeState(stunnedState);
     }
 }

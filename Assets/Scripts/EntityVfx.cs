@@ -7,11 +7,11 @@ public class EntityVfx : MonoBehaviour
     [Header("On Damage Vfx")]
     [SerializeField] Material damageMaterial;
     [SerializeField] float damageVfxDuration = 0.2f;
-    Material originalMaterial;
-    SpriteRenderer spriteRenderer;
+    protected Material originalMaterial;
+    protected SpriteRenderer spriteRenderer;
     Coroutine damageVfxCoroutine;
 
-    private void Awake() 
+    protected virtual void Awake() 
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         originalMaterial = spriteRenderer.material;    

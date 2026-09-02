@@ -8,6 +8,7 @@ public class Enemy : Entity
     public EnemyState attackState { get; protected set; }
     public EnemyState battleState { get; protected set; }
     public EnemyState deadState { get; protected set; }
+    public EnemyState stunnedState { get; protected set; }
 
     [Header("Battle Details")]
     public float battleMoveSpeed = 1f;
@@ -22,6 +23,12 @@ public class Enemy : Entity
     [SerializeField] LayerMask playerLayerMask;
     [SerializeField] Transform playerCheck;
     [SerializeField] float playerCheckDistance = 3f;
+
+    [Header("Stunned State Details")]
+    [field: SerializeField] public float stunnedDuration { get; protected set; } = 1f;
+    [field: SerializeField] public Vector2 stunnedVelocity { get; protected set; } = new(7, 7);
+    protected bool canCounter;
+    public void EnableCounerWindow(bool enable) => canCounter = enable;
 
     private void OnEnable() 
     {

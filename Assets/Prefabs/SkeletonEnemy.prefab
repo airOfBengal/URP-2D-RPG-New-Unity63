@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5289536013393435535}
   - component: {fileID: 8706257747653276056}
   - component: {fileID: 6372339993861155479}
-  - component: {fileID: 3806820955629320000}
+  - component: {fileID: 8922657340244662744}
   m_Layer: 8
   m_Name: SkeletonEnemy
   m_TagString: Untagged
@@ -71,6 +71,8 @@ MonoBehaviour:
     m_Bits: 128
   playerCheck: {fileID: 1379382558843046911}
   playerCheckDistance: 4
+  <stunnedDuration>k__BackingField: 1
+  <stunnedVelocity>k__BackingField: {x: 7, y: 7}
 --- !u!50 &4515077159843080118
 Rigidbody2D:
   serializedVersion: 5
@@ -167,7 +169,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealth
   maxHp: 100
   isDead: 0
---- !u!114 &3806820955629320000
+  knockbackPower: {x: 1.5, y: 2.5}
+  knockbackDuration: 0.2
+  heavyKnockbackPower: {x: 7, y: 7}
+  heavyKnockbackDuration: 0.5
+  heavyDamageThreshold: 0.3
+--- !u!114 &8922657340244662744
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,11 +183,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 265022067569747417}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2fc73bc61471f34a9b251fc91f39b0c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f4ec77607196494398e5a51f6cb3717, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EntityVfx
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyVfx
   damageMaterial: {fileID: 2100000, guid: c5f5e3c78125fa24b928e9600bba0277, type: 2}
   damageVfxDuration: 0.2
+  attackColor: {r: 1, g: 0, b: 0, a: 0.5882353}
 --- !u!1 &691304924805582164
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +293,7 @@ GameObject:
   - component: {fileID: 8984318685141104071}
   - component: {fileID: 3900886254932075123}
   - component: {fileID: 538297554857632931}
-  - component: {fileID: 7615268221011741789}
+  - component: {fileID: 899537151198564531}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -390,7 +398,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!114 &7615268221011741789
+--- !u!114 &899537151198564531
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -399,6 +407,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6347225123655353277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3cdf7eb6453404c84cf643bbeb0a42, type: 3}
+  m_Script: {fileID: 11500000, guid: 3657c1c2e240a8748855ead0c217b3cd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EntityAnimationTriggers
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationTriggers
