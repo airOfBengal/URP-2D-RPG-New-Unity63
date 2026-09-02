@@ -14,15 +14,36 @@ public class EntityCombat : MonoBehaviour
     {
         foreach(var target in GetDetectedColliders())
         {
-            IDamagable damagable = target.GetComponent<IDamagable>();
-            damagable?.TakeDamage(damage, transform);
+            if(TryCounterAttack(target)) continue;
+            DoDamage(target);
+        }
+    }
 
-            // if player attacks behind side, enemy flips.
-            if(damagable is EntityHealth && transform.right == target.transform.right)
+    private void DoDamage(Collider2D target)
+    {
+        IDamagable damagable = target.GetComponent<IDamagable>();
+        damagable?.TakeDamage(damage, transform);
+
+        // if player attacks behind side, enemy flips.
+        if (damagable is EntityHealth && transform.right == target.transform.right)
+        {
+            target.transform.Rotate(new Vector3(0, 180, 0));
+        }
+    }
+
+    private bool TryCounterAttack(Collider2D target)
+    {
+        if (target.CompareTag("Enemy"))
+        {
+            Enemy enemy = target.GetComponent<Enemy>();
+            if (enemy.canCounter)
             {
-                target.transform.Rotate(new Vector3(0, 180, 0));
+                enemy.stateMachine.ChangeState(enemy.stunnedState);
+                return true;
             }
         }
+
+        return false;
     }
 
     private Collider2D[] GetDetectedColliders()

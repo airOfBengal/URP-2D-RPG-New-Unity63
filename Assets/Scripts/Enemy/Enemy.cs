@@ -27,7 +27,7 @@ public class Enemy : Entity
     [Header("Stunned State Details")]
     [field: SerializeField] public float stunnedDuration { get; protected set; } = 1f;
     [field: SerializeField] public Vector2 stunnedVelocity { get; protected set; } = new(7, 7);
-    protected bool canCounter;
+    public bool canCounter { get; protected set;} 
     public void EnableCounerWindow(bool enable) => canCounter = enable;
 
     private void OnEnable() 
