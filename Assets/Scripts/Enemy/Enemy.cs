@@ -6,6 +6,7 @@ public class Enemy : Entity
     public EnemyState moveState { get; protected set; }
     public EnemyState attackState { get; protected set; }
     public EnemyState battleState { get; protected set; }
+    public EnemyState deadState { get; protected set; }
 
     [Header("Battle Details")]
     public float battleMoveSpeed = 1f;
@@ -30,6 +31,13 @@ public class Enemy : Entity
         }
 
         return hit;
+    }
+
+    public override void EntityDeath()
+    {
+        base.EntityDeath();
+
+        stateMachine.ChangeState(deadState);
     }
 
     protected override void OnDrawGizmos()

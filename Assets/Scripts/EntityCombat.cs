@@ -15,7 +15,7 @@ public class EntityCombat : MonoBehaviour
         foreach(var target in GetDetectedColliders())
         {
             EntityHealth health = target.GetComponent<EntityHealth>();
-            health.TakeDamage(damage);
+            health.TakeDamage(damage, transform);
 
             // if player attacks behind side, enemy flips.
             if(transform.right == target.transform.right)

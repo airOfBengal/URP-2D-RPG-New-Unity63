@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -13,6 +14,9 @@ public class Entity : MonoBehaviour
     [SerializeField] protected LayerMask groundLayerMask;
     [field: SerializeField] public bool groundDetected { get; private set; }
     [field: SerializeField] public bool wallDetected { get; private set; }
+
+    bool isKnockback;
+    Coroutine knockbackCoroutine;
 
     protected virtual void Awake()
     {
@@ -32,8 +36,19 @@ public class Entity : MonoBehaviour
         stateMachine.UpdateActiveState();
     }
 
+    public void Knockback(Vector2 power, float duration)
+    {
+        if(knockbackCoroutine != null)
+        {
+            StopCoroutine(knockbackCoroutine);
+        }
+
+        knockbackCoroutine = StartCoroutine(RoutineKnockback(power, duration));
+    }
+
     public void SetVelocity(float xVelocity, float yVelocity)
     {
+        if(isKnockback) return;
         rb.linearVelocity = new Vector2(xVelocity, yVelocity);
     }
 
@@ -53,5 +68,20 @@ public class Entity : MonoBehaviour
     {
         Gizmos.DrawLine(groundCheck.position, groundCheck.position + Vector3.down * groundCheckDistance);
         Gizmos.DrawLine(transform.position, transform.position + transform.right * wallCheckDistance);
+    }
+
+    IEnumerator RoutineKnockback(Vector2 power, float duration)
+    {
+        isKnockback = true;
+        rb.linearVelocity = power;
+        yield return new WaitForSeconds(duration);
+        isKnockback = false;
+        rb.linearVelocity = Vector2.zero;
+    }
+
+    public virtual void EntityDeath(){}
+    public virtual void EntityDestroy()
+    {
+        Destroy(gameObject);
     }
 }
