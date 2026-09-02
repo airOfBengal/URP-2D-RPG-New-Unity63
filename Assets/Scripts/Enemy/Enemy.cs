@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Enemy : Entity
@@ -21,6 +22,16 @@ public class Enemy : Entity
     [SerializeField] LayerMask playerLayerMask;
     [SerializeField] Transform playerCheck;
     [SerializeField] float playerCheckDistance = 3f;
+
+    private void OnEnable() 
+    {
+        Player.OnPlayerDeath += HandlePlayerDeath;    
+    }
+
+    private void HandlePlayerDeath()
+    {
+        stateMachine.ChangeState(idleState);
+    }
 
     public RaycastHit2D PlayerDetected()
     {

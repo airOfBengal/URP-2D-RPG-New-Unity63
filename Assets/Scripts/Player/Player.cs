@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Player : Entity
 {
+     public static Action OnPlayerDeath;
+
      public Player_IdleState idleState { get; private set; }
      public Player_MoveState moveState { get; private set; }
      public Player_JumpState jumpState { get; private set; }
@@ -12,6 +14,7 @@ public class Player : Entity
      public Player_DashState dashState { get; private set; }
      public Player_BasicAttackState basicAttackState { get; private set; }
      public Player_JumpAttackState jumpAttackState { get; private set; }
+     public Player_DeadState deadState { get; private set; }
 
      public InputControls controls { get; private set; }
      public InputControls InputControl => controls;
@@ -49,6 +52,7 @@ public class Player : Entity
           dashState = new Player_DashState(this, stateMachine, "dashMove");
           basicAttackState = new Player_BasicAttackState(this, stateMachine, "basicAttack");
           jumpAttackState = new Player_JumpAttackState(this, stateMachine, "jumpAttack");
+          deadState = new Player_DeadState(this, stateMachine, "dead");
 
           controls = new InputControls();
      }
@@ -83,5 +87,11 @@ public class Player : Entity
           Flip();
      }
 
-
+    public override void EntityDeath()
+    {
+        base.EntityDeath();
+        OnPlayerDeath?.Invoke();
+        stateMachine.ChangeState(deadState);
+        rb.simulated = false;
+    }
 }
