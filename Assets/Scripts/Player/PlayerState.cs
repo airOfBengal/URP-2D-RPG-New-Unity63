@@ -15,7 +15,7 @@ public class PlayerState : EntityState
     {
         base.Update();
 
-        Flip();
+        // Flip();
 
         if(player.controls.Player.Attack.WasPressedThisFrame() && !player.isInBasicAttack)
         {

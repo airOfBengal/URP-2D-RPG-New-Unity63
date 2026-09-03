@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 
 public class EntityHealth : MonoBehaviour, IDamagable
 {
-    [SerializeField] protected float maxHp = 100f;
+    public event Action OnHealthUpdate;
+
+    [field: SerializeField] public float maxHp { get; private set; } = 100f;
     [SerializeField] protected bool isDead;
-    float currentHp;
+    public float currentHp { get; private set; }
 
     [Header("On Damage")]
     [SerializeField] Vector2 knockbackPower = new Vector2(1.5f, 2.5f);
@@ -45,8 +48,9 @@ public class EntityHealth : MonoBehaviour, IDamagable
 
     protected void ReduceHp(float damage)
     {
-        maxHp -= damage;
-        if(maxHp <= 0)
+        currentHp -= damage;
+        OnHealthUpdate?.Invoke();
+        if(currentHp <= 0)
         {
             Die();
         }

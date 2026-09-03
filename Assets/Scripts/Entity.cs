@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    public event Action OnFlip;
+
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public StateMachine stateMachine { get; private set; }
@@ -54,8 +57,8 @@ public class Entity : MonoBehaviour
 
     public void Flip()
     {
-        // transform.rotation = transform.rotation.y == 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(Vector2.zero);
         transform.Rotate(new Vector3(0, 180, 0));
+        OnFlip?.Invoke();
     }
 
     protected void HandleCollisionDetection()

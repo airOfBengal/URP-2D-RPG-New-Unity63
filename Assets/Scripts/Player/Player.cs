@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Player : Entity
 {
-     public static Action OnPlayerDeath;
+     public static event Action OnPlayerDeath;
 
      public Player_IdleState idleState { get; private set; }
      public Player_MoveState moveState { get; private set; }
@@ -64,6 +64,14 @@ public class Player : Entity
           controls.Player.Move.performed += context =>
           {
                moveInput = context.ReadValue<Vector2>();
+               if(moveInput.x > 0)
+               {
+                    transform.rotation = Quaternion.identity;
+               }
+               else if(moveInput.x < 0)
+               {
+                    transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+               }
           };
           controls.Player.Move.canceled += context =>
           {
