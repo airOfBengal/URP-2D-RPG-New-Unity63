@@ -5,7 +5,6 @@ public class EntityHealth : MonoBehaviour, IDamagable
 {
     public event Action OnHealthUpdate;
 
-    [field: SerializeField] public float maxHp { get; private set; } = 100f;
     [SerializeField] protected bool isDead;
     public float currentHp { get; private set; }
 
@@ -21,29 +20,36 @@ public class EntityHealth : MonoBehaviour, IDamagable
 
     EntityVfx entityVfx;
     Entity entity;
+    public EntityStats stats { get; private set; }
 
     private void Awake() 
     {
         entityVfx = GetComponent<EntityVfx>();    
         entity = GetComponent<Entity>();
+        stats = GetComponent<EntityStats>();
 
-        currentHp = maxHp;
+        currentHp = stats.GetMaxHealth();
     }
 
     public virtual void TakeDamage(float damage, Transform damageDealer)
     {
         if(isDead) return;
 
-        Vector2 power = CalculateKnockbackPower(damageDealer);
+        Vector2 power = CalculateKnockbackPower(damage, damageDealer);
+        float duration = CalculateKnockbackDuration(damage);
         entity?.Knockback(power, knockbackDuration);
         entityVfx?.ShowHitVfx();
         ReduceHp(damage);
     }
 
-    private Vector2 CalculateKnockbackPower(Transform damageDealer)
+    private Vector2 CalculateKnockbackPower(float damage, Transform damageDealer)
     {
         int direction = transform.position.x > damageDealer.position.x ? 1 : -1;
-        return new Vector2(knockbackPower.x * direction, knockbackPower.y);
+
+        Vector2 knockback = IsHeavyDamage(damage) ? heavyKnockbackPower : knockbackPower;
+        knockback.x *= direction;
+
+        return knockback;
     }
 
     protected void ReduceHp(float damage)
@@ -61,4 +67,7 @@ public class EntityHealth : MonoBehaviour, IDamagable
         isDead = true;
         entity.EntityDeath();
     }
+
+    private float CalculateKnockbackDuration(float damage) => IsHeavyDamage(damage) ? heavyKnockbackDuration : knockbackDuration;
+    private bool IsHeavyDamage(float damage) => damage / stats.GetMaxHealth() > heavyDamageThreshold;
 }

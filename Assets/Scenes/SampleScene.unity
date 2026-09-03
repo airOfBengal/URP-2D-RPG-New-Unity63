@@ -5910,6 +5910,7 @@ GameObject:
   - component: {fileID: 468139941}
   - component: {fileID: 468139942}
   - component: {fileID: 468139943}
+  - component: {fileID: 468139944}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -6058,7 +6059,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11edb8be35308b7479807eb8df4496ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealth
-  <maxHp>k__BackingField: 100
   isDead: 0
   knockbackPower: {x: 1.5, y: 2.5}
   knockbackDuration: 0.2
@@ -6080,6 +6080,22 @@ MonoBehaviour:
   hitVfx: {fileID: 3347937085311167731, guid: 800543b14b3b6534194e1935ac615471, type: 3}
   damageMaterial: {fileID: 2100000, guid: c5f5e3c78125fa24b928e9600bba0277, type: 2}
   damageVfxDuration: 0.2
+--- !u!114 &468139944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468139936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d000964474f29b14183922754601b1f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityStats
+  maxHp:
+    baseValue: 100
+  vitality:
+    baseValue: 7
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -7704,6 +7720,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkeletonEnemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 265022067569747417, guid: 6edc3f71e78c3724885b083dc59d4950, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7211623660123916410, guid: 6edc3f71e78c3724885b083dc59d4950, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.724278
@@ -8289,6 +8309,10 @@ PrefabInstance:
     - target: {fileID: 265022067569747417, guid: 6edc3f71e78c3724885b083dc59d4950, type: 3}
       propertyPath: m_Name
       value: SkeletonEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 265022067569747417, guid: 6edc3f71e78c3724885b083dc59d4950, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7211623660123916410, guid: 6edc3f71e78c3724885b083dc59d4950, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9237,6 +9261,10 @@ PrefabInstance:
     - target: {fileID: 265022067569747417, guid: 6edc3f71e78c3724885b083dc59d4950, type: 3}
       propertyPath: m_Name
       value: SkeletonEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 265022067569747417, guid: 6edc3f71e78c3724885b083dc59d4950, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7211623660123916410, guid: 6edc3f71e78c3724885b083dc59d4950, type: 3}
       propertyPath: m_LocalPosition.x

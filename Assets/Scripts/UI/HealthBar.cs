@@ -40,7 +40,7 @@ public class HealthBar : MonoBehaviour
             healthBarStatusParent.SetActive(true);
         }
 
-        healthBarStatus.transform.localScale = new Vector3(entityHealth.currentHp / entityHealth.maxHp, 1f, 1f);
+        healthBarStatus.transform.localScale = new Vector3(entityHealth.currentHp / entityHealth.stats.GetMaxHealth(), 1f, 1f);
     }
 
     private void OnDisable() 
