@@ -4583,8 +4583,8 @@ Tilemap:
   - first: {x: 16, y: -2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 15
+      m_TileIndex: 11
+      m_TileSpriteIndex: 6
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -5006,7 +5006,7 @@ Tilemap:
     m_RefCount: 5
     m_Data: {fileID: 11400000, guid: a3deb75343832934286350a241bae1ef, type: 2}
   - serializedVersion: 2
-    m_RefCount: 57
+    m_RefCount: 56
     m_Data: {fileID: 11400000, guid: 7b0f5800bf872704e8a33403f93f0d0d, type: 2}
   - serializedVersion: 2
     m_RefCount: 4
@@ -5036,7 +5036,7 @@ Tilemap:
     m_RefCount: 214
     m_Data: {fileID: 11400000, guid: fe76c9be0b0c8cb4296c001a2a38b399, type: 2}
   - serializedVersion: 2
-    m_RefCount: 8
+    m_RefCount: 9
     m_Data: {fileID: 11400000, guid: 51cce01678040e04aa14d47d13ebcb6c, type: 2}
   - serializedVersion: 2
     m_RefCount: 8
@@ -5082,7 +5082,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: e32695b69ba79c04bb28348ef93af355, type: 2}
   - serializedVersion: 2
     m_RefCount: 0
-    m_Data: {fileID: 11400000, guid: 9c8348080e24b574fbacd61229977427, type: 2}
+    m_Data: {fileID: 11400000, guid: cc67cbaeb38a0f544ac3877ab4c748d3, type: 2}
   m_TileSpriteArray:
   - serializedVersion: 2
     m_RefCount: 3
@@ -5103,7 +5103,7 @@ Tilemap:
     m_RefCount: 12
     m_Data: {fileID: -72718336, guid: 41b05cadb4c4fad4489a1435b44ec504, type: 3}
   - serializedVersion: 2
-    m_RefCount: 8
+    m_RefCount: 9
     m_Data: {fileID: -1786252733, guid: 41b05cadb4c4fad4489a1435b44ec504, type: 3}
   - serializedVersion: 2
     m_RefCount: 11
@@ -5130,7 +5130,7 @@ Tilemap:
     m_RefCount: 8
     m_Data: {fileID: -1217001967, guid: 41b05cadb4c4fad4489a1435b44ec504, type: 3}
   - serializedVersion: 2
-    m_RefCount: 57
+    m_RefCount: 56
     m_Data: {fileID: 197214371, guid: 41b05cadb4c4fad4489a1435b44ec504, type: 3}
   - serializedVersion: 2
     m_RefCount: 5
@@ -5164,7 +5164,7 @@ Tilemap:
     m_Data: {fileID: -1032407808, guid: 41b05cadb4c4fad4489a1435b44ec504, type: 3}
   - serializedVersion: 2
     m_RefCount: 0
-    m_Data: {fileID: -1121725215, guid: 41b05cadb4c4fad4489a1435b44ec504, type: 3}
+    m_Data: {fileID: -1858425160, guid: 41b05cadb4c4fad4489a1435b44ec504, type: 3}
   m_TileMatrixArray:
   - serializedVersion: 2
     m_RefCount: 478
@@ -5951,7 +5951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   groundCheck: {fileID: 468139938}
-  groundCheckDistance: 1.4
+  groundCheckDistance: 1.55
   wallCheckDistance: 0.6
   groundLayerMask:
     serializedVersion: 2
@@ -6114,8 +6114,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityStats
   maxHp:
     baseValue: 100
-  vitality:
-    baseValue: 7
+  majorStats:
+    strength:
+      baseValue: 0
+    agility:
+      baseValue: 0
+    intelligence:
+      baseValue: 0
+    vitality:
+      baseValue: 10
+  offense:
+    damage:
+      baseValue: 10
+    critPower:
+      baseValue: 0
+    critChance:
+      baseValue: 0
+    fireDamage:
+      baseValue: 0
+    iceDamage:
+      baseValue: 0
+    lightningDamage:
+      baseValue: 0
+  defence:
+    armor:
+      baseValue: 0
+    evasion:
+      baseValue: 0
+    fireRes:
+      baseValue: 0
+    iceRes:
+      baseValue: 0
+    lightningRes:
+      baseValue: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

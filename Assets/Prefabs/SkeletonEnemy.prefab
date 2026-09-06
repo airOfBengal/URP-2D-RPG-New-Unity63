@@ -205,8 +205,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityStats
   maxHp:
     baseValue: 100
-  vitality:
-    baseValue: 0
+  majorStats:
+    strength:
+      baseValue: 0
+    agility:
+      baseValue: 0
+    intelligence:
+      baseValue: 0
+    vitality:
+      baseValue: 0
+  offense:
+    damage:
+      baseValue: 20
+    critPower:
+      baseValue: 0
+    critChance:
+      baseValue: 0
+    fireDamage:
+      baseValue: 0
+    iceDamage:
+      baseValue: 0
+    lightningDamage:
+      baseValue: 0
+  defence:
+    armor:
+      baseValue: 0
+    evasion:
+      baseValue: 0
+    fireRes:
+      baseValue: 0
+    iceRes:
+      baseValue: 0
+    lightningRes:
+      baseValue: 0
 --- !u!1 &691304924805582164
 GameObject:
   m_ObjectHideFlags: 0

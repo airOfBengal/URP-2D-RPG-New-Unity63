@@ -16,14 +16,14 @@ public class Player_GroundedState : PlayerState
             return;
         }        
 
-        float moveAmount = Mathf.Abs(player.moveInput.x) + Mathf.Abs(player.moveInput.y);
-        if(moveAmount > 0f)
+        //float moveAmount = Mathf.Abs(player.moveInput.x); //+ Mathf.Abs(player.moveInput.y);
+        if(player.moveInput.magnitude > 0f)
         {
-            player.stateMachine.ChangeState(player.moveState);
+            stateMachine.ChangeState(player.moveState);
         }
-        else if(this is Player_MoveState)
+        else if(this is Player_MoveState || !player.groundDetected)
         {
-            player.stateMachine.ChangeState(player.idleState);
+            stateMachine.ChangeState(player.idleState);
         }
     }
 }

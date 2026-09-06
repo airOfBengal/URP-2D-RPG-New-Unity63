@@ -12,5 +12,6 @@ public class Player_MoveState : Player_GroundedState
 
         // add movement
         player.SetVelocity(player.moveInput.x * player.moveSpeed, rb.linearVelocity.y);
+        anim.SetFloat("xVelocityMultiplier", player.moveInput.x);
     }
 }
