@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EntityHealth : MonoBehaviour, IDamagable
 {
@@ -31,15 +32,19 @@ public class EntityHealth : MonoBehaviour, IDamagable
         currentHp = stats.GetMaxHealth();
     }
 
-    public virtual void TakeDamage(float damage, Transform damageDealer)
+    public virtual bool TakeDamage(float damage, Transform damageDealer)
     {
-        if(isDead) return;
+        if(isDead) return false;
+
+        if(AttackEvaded()) return false;
 
         Vector2 power = CalculateKnockbackPower(damage, damageDealer);
         float duration = CalculateKnockbackDuration(damage);
         entity?.Knockback(power, knockbackDuration);
         entityVfx?.ShowHitVfx();
         ReduceHp(damage);
+
+        return true;
     }
 
     private Vector2 CalculateKnockbackPower(float damage, Transform damageDealer)
@@ -70,4 +75,5 @@ public class EntityHealth : MonoBehaviour, IDamagable
 
     private float CalculateKnockbackDuration(float damage) => IsHeavyDamage(damage) ? heavyKnockbackDuration : knockbackDuration;
     private bool IsHeavyDamage(float damage) => damage / stats.GetMaxHealth() > heavyDamageThreshold;
+    private bool AttackEvaded() => Random.Range(0, 100) < stats.GetEvasion();
 }

@@ -6140,7 +6140,7 @@ MonoBehaviour:
     armor:
       baseValue: 0
     evasion:
-      baseValue: 0
+      baseValue: 100
     fireRes:
       baseValue: 0
     iceRes:
@@ -9316,6 +9316,10 @@ PrefabInstance:
     - target: {fileID: 265022067569747417, guid: 6edc3f71e78c3724885b083dc59d4950, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2293366733363616572, guid: 6edc3f71e78c3724885b083dc59d4950, type: 3}
+      propertyPath: defence.evasion.baseValue
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7211623660123916410, guid: 6edc3f71e78c3724885b083dc59d4950, type: 3}
       propertyPath: m_LocalPosition.x
