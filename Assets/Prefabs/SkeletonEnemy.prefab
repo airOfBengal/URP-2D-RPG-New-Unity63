@@ -231,7 +231,7 @@ MonoBehaviour:
     armor:
       baseValue: 0
     evasion:
-      baseValue: 0
+      baseValue: 40
     fireRes:
       baseValue: 0
     iceRes:
